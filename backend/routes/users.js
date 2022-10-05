@@ -2,16 +2,18 @@ const router = require("express").Router();
 let User = require("../models/user.model");
 
 // Post route to get "/" user from DB
-router.get('/', (req, res) => {
+// req and res are objects 
+router.route('/').get((req, res) => {
   User.find()
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// POST route to write "add" to DB
+// POST route to "add" to DB
 router.route('/add').post((req, res) => {
   // username from POST body
-  const username = req.body.json(username);
+  const username = req.body.username;
+
   // Creates a new user object with username
   const newUser = new User({ username });
   // If json is returned with newUser save
