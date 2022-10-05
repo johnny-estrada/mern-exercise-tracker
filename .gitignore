@@ -37,7 +37,6 @@ node_modules
 bower_components
 
 *.sublime*
-.gitmessage
 
 psd
 thumb
