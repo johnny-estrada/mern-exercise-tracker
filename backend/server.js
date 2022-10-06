@@ -9,7 +9,6 @@ const mongoose = require("mongoose");
 // they can be stored in a file.
 require("dotenv").config();
 
-// variable can be named anything most of the time its app.
 // the variable express represents the actual api we're building.
 // Express: A web application framework for Node.js.
 const app = express();
@@ -25,21 +24,23 @@ app.use(express.json());
 
 // This is the connection string from MongoDB Atlas
 const uri = process.env.ATLAS_URI;
+// // Mongoose is a simple, schema-based solution to model application data.
 mongoose.connect(uri, { useNewUrlParser: true });
 
-// Mongoose is a simple, schema-based solution to model application data.
+
 // This is the connection to mongoose.
 const connection = mongoose.connection;
 
-// Connecting to DB
+// Connection established
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-// Routes to DB
+// DB Routes to exercise and users
 const exercisesRouter = require("./routes/exercises");
 const usersRouter = require("./routes/users");
 
+// event listeners to use routes. 
 app.use("/exercises", exercisesRouter);
 app.use("/users", usersRouter);
 
